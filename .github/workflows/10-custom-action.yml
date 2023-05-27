@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./composite
+      - uses: ./.github/actions/composite
         with:
           first-number: 1
           second-number: 2

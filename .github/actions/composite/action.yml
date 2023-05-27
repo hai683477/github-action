@@ -19,15 +19,15 @@ runs:
   steps:
     - name: Print first number
       shell: bash
-      run: echo ${{ inputs.first-number }}
+      run: 'echo "First number: ${{ inputs.first-number }}"'
     - name: Print second number
       shell: bash
-      run: echo ${{ inputs.second-number }}
+      run: 'echo "Second number: ${{ inputs.second-number }}"'
     - id: calculate-sum
       run: |
         sum=$((${{ inputs.first-number }} + ${{ inputs.second-number }}))
         echo "sum=$sum" >> $GITHUB_OUTPUT
       shell: bash
     - name: Print sum
-      run: echo ${{ steps.calculate-sum.outputs.sum }}
+      run: 'echo "Sum: ${{ steps.calculate-sum.outputs.sum }}"'
       shell: bash

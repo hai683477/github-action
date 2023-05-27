@@ -17,8 +17,10 @@ jobs:
     if: true
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/composite
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Calculate Sum
+        uses: ./.github/actions/composite
         with:
           first-number: 1
           second-number: 2

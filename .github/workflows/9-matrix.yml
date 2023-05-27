@@ -31,7 +31,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'zulu'
+          distribution: zulu
           java-version: ${{ matrix.version }}
       - name: Check Java version
         run: java -version
@@ -49,10 +49,10 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'zulu'
+          distribution: zulu
           java-version: ${{ matrix.version }}
       - name: Fail job
-        if: ${{ matrix.version }} == 11
+        if: ${{ matrix.os == 'windows-latest' }}
         run: exit 1
       - name: Check Java version
         run: java -version

@@ -52,7 +52,7 @@ jobs:
           distribution: zulu
           java-version: ${{ matrix.version }}
       - name: Fail job
-        if: ${{ matrix.os == 'windows-latest' }}
+        if: ${{ matrix.version == 11 }}
         run: exit 1
       - name: Check Java version
         run: java -version
@@ -73,7 +73,7 @@ jobs:
           distribution: zulu
           java-version: ${{ matrix.version }}
       - name: Fail job
-        if: ${{ matrix.os == 'windows-latest' }}
+        if: ${{ matrix.version == 11 }}
         run: exit 1
       - name: Check Java version
         run: java -version

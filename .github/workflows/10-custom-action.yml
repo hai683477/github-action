@@ -15,7 +15,7 @@ jobs:
   composite-action:
     name: Composite Action
     if: true
-    uses: ./actions/composite
+    uses: ./actions/composite@latest
     with:
       first-number: 1
       second-number: 2

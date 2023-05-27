@@ -1,7 +1,6 @@
 name: Custom Action Workflow
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       job:
@@ -14,33 +13,39 @@ on:
 jobs:
   composite-action:
     name: Composite Action
-    if: false
+    if: ${{ inputs.job == 'Composite_Action' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Calculate Sum
+        id: calculate-sum
         uses: ./.github/actions/composite
         with:
           first-number: 1
           second-number: 2
+      - name: Print sum
+        run: 'echo "Sum: ${{ steps.calculate-sum.outputs.sum }}"'
 
   docker-action:
     name: Docker Action
-    if: false
+    if: ${{ inputs.job == 'Docker_Action' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Calculate Sum
+        id: calculate-sum
         uses: ./.github/actions/docker
         with:
           first-number: 1
           second-number: 2
+      - name: Print sum
+        run: 'echo "Sum: ${{ steps.calculate-sum.outputs.sum }}"'
 
   javascript-action:
     name: JavaScript Action
-    if: true
+    if: ${{ inputs.job == 'JavaScript_Action' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

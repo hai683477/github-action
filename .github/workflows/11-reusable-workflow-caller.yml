@@ -5,6 +5,6 @@ on: push
 jobs:
   reusable-workflow-job:
     uses: ./.github/workflows/11-reusable-workflow.yml
-      with:
-        first-number: 1
-        second-number: 2
+    with:
+      first-number: 1
+      second-number: 2

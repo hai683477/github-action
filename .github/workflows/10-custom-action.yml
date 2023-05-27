@@ -27,13 +27,26 @@ jobs:
 
   docker-action:
     name: Docker Action
-    if: true
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Calculate Sum
         uses: ./.github/actions/docker
+        with:
+          first-number: 1
+          second-number: 2
+
+  javascript-action:
+    name: JavaScript Action
+    if: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Calculate Sum
+        uses: ./.github/actions/javascript
         with:
           first-number: 1
           second-number: 2

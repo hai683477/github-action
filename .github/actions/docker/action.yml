@@ -1,0 +1,21 @@
+name: Docker Action
+description: Calculate sum of 2 numbers
+
+inputs:
+  first-number:
+    description: First number
+    required: true
+  second-number:
+    description: Second number
+    required: true
+
+outputs:
+  sum:
+    description: Sum
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.first-number }}
+    - ${{ inputs.second-number }}

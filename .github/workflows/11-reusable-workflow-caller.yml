@@ -1,12 +1,10 @@
-name: Reusable Workflow (Caller)
+name: Reusable Workflow
 
 on: push
 
 jobs:
   reusable-workflow-job:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/workflows/11-reusable-workflow.yml
-        with:
-          first-number: 1
-          second-number: 2
+    uses: ./.github/workflows/11-reusable-workflow.yml
+      with:
+        first-number: 1
+        second-number: 2

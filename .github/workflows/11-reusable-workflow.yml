@@ -15,7 +15,6 @@ on:
 jobs:
   composite-action:
     name: Composite Action
-    if: ${{ inputs.job == 'Composite_Action' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +30,6 @@ jobs:
 
   docker-action:
     name: Docker Action
-    if: ${{ inputs.job == 'Docker_Action' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,7 +45,6 @@ jobs:
 
   javascript-action:
     name: JavaScript Action
-    if: ${{ inputs.job == 'JavaScript_Action' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

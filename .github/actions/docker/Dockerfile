@@ -1,5 +1,8 @@
 FROM alpine:3.10
 
-COPY entrypoint.sh ./entrypoint.sh
+RUN pwd
+RUN ls
 
-ENTRYPOINT ['./entrypoint.sh']
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ['/entrypoint.sh']

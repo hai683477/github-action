@@ -1,0 +1,91 @@
+name: Restaurant Process workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Customer Name"
+        required: false
+      sex:
+        description: "Customer Sex"
+        type: choice
+        default: male
+        options:
+          - "male"
+          - "female"
+      has-reserved-seat:
+        type: boolean
+        description: "Do you have reservation ?"
+        required: true
+        default: false
+      is-vegetarian:
+        type: boolean
+        description: "Are you vegetarian ?"
+        required: true
+        default: false
+
+jobs:
+  say-hello-to-customer:
+    runs-on: ubuntu-latest
+    #job condition
+    if: github.event.inputs.name != ''
+    steps:
+      - name: Say hello to mister
+        #step condition
+        if: github.event.inputs.sex == 'male'
+        run: |
+          echo Hello Mr. ${{ github.event.inputs.name }}
+      - name: Say hello to miss
+        #step condition
+        if: github.event.inputs.sex == 'female'
+        run: |
+          echo Hello Ms. ${{ github.event.inputs.name }}
+
+  prepare-seat:
+    runs-on: ubuntu-latest
+    needs: [say-hello-to-customer]
+    steps:
+      - name: Allocate seat for customer
+        run: |
+          if [[ ${{ github.event.inputs.has-reserved-seat }} == true ]]; then
+            echo Allocated seat
+          else
+            echo Only Reserved Seat is allowed
+            exit 1;
+          fi
+
+  serve-lunch:
+    runs-on: ubuntu-latest
+    needs: [ prepare-seat ]
+    steps:
+      - name: Serving meat
+        #always success step
+        continue-on-error: true
+        run: |
+          if [[ ${{ github.event.inputs.is-vegetarian }} == true ]]; then
+            exit 1;
+          fi
+      - name: Serving dessert
+        run: |
+          echo "Served dessert"
+
+  checkout:
+    runs-on: ubuntu-latest
+    needs: [ serve-lunch ]
+    steps:
+      - name: Checkout for customer
+        run: |
+          echo "Checked out"
+
+  say-goodbye:
+    #always run job
+    if: always()
+    runs-on: ubuntu-latest
+    needs: [ checkout ]
+    steps:
+      - run: |
+          echo Goodbye ${{ github.event.inputs.name }}
+    
+    
+
+  

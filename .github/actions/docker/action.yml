@@ -14,7 +14,7 @@ outputs:
     description: Sum
 
 runs:
-  using: docker
+  using: 'docker'
     image: 'Dockerfile'
     args:
       - ${{ inputs.first-number }}

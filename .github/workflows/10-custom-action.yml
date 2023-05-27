@@ -14,13 +14,26 @@ on:
 jobs:
   composite-action:
     name: Composite Action
-    if: true
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Calculate Sum
         uses: ./.github/actions/composite
+        with:
+          first-number: 1
+          second-number: 2
+
+  docker-action:
+    name: Docker Action
+    if: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Calculate Sum
+        uses: ./.github/actions/docker
         with:
           first-number: 1
           second-number: 2

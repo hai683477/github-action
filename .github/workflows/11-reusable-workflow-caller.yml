@@ -3,8 +3,20 @@ name: Reusable Workflow
 on: push
 
 jobs:
-  reusable-workflow-job:
+  reusable-workflow-first-job:
     uses: ./.github/workflows/11-reusable-workflow.yml
     with:
       first-number: 1
       second-number: 2
+
+  reusable-workflow-second-job:
+    uses: ./.github/workflows/11-reusable-workflow.yml
+    with:
+      first-number: 3
+      second-number: 4
+
+  reusable-workflow-thrid-job:
+    uses: ./.github/workflows/11-reusable-workflow.yml
+    with:
+      first-number: 5
+      second-number: 6

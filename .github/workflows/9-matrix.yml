@@ -4,8 +4,8 @@ on: push
 
 jobs:
   one-dimension-matrix:
-    name: "Java ${{ matrix.version }}"
-    if: false
+    name: Java ${{ matrix.version }}
+    if: true
     runs-on: [ ubuntu-latest ]
     strategy:
       matrix:
@@ -20,8 +20,8 @@ jobs:
         run: java -version
 
   two-dimension-matrix:
-    name: "OS: ${{ matrix.os }} - Java ${{ matrix.version }}"
-    if: true
+    name: ${{ matrix.os }} - Java ${{ matrix.version }}
+    if: false
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

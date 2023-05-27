@@ -1,0 +1,33 @@
+name: Composite Action
+description: Calculate sum of 2 numbers
+
+inputs:
+  first-number:
+    description: First number
+    required: true
+  second-number:
+    description: First number
+    required: true
+
+outputs:
+  sum:
+    description: Sum
+    value: ${{ steps.calculate-sum.outputs.sum }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Print first number
+      shell: bash
+      run: echo ${{ inputs.first-number }}
+    - name: Print second number
+      shell: bash
+      run: echo ${{ inputs.second-number }}
+    - id: calculate-sum
+      run: |
+        sum=$((${{ inputs.first-number }} + ${{ inputs.second-number }}))
+        echo "sum=$sum" >> $GITHUB_OUTPUT
+      shell: bash
+    - name: Print sum
+      run: echo ${{ steps.calculate-sum.outputs.sum }}
+      shell: bash

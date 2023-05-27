@@ -1,0 +1,21 @@
+name: Matrix Workflow
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      job:
+        type: choice
+        options:
+          - Composite_Action
+          - Docker_Action
+          - JavaScript_Action
+
+jobs:
+  composite-action:
+    name: Composite Action
+    if: true
+    uses: ./actions/composite
+    with:
+      first-number: 1
+      second-number: 2

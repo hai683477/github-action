@@ -6,7 +6,7 @@ inputs:
     description: First number
     required: true
   second-number:
-    description: First number
+    description: Second number
     required: true
 
 outputs:
@@ -15,7 +15,7 @@ outputs:
     value: ${{ steps.calculate-sum.outputs.sum }}
 
 runs:
-  using: "composite"
+  using: composite
   steps:
     - name: Print first number
       shell: bash

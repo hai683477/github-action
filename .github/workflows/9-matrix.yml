@@ -5,7 +5,7 @@ on: push
 jobs:
   one-dimension-matrix:
     name: Java ${{ matrix.version }}
-    if: true
+    if: false
     runs-on: [ ubuntu-latest ]
     strategy:
       matrix:
@@ -51,5 +51,8 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: ${{ matrix.version }}
+      - name: Fail job
+        if: ${{ matrix.version }} == 11
+        run: exit 1
       - name: Check Java version
-        run: '[ "${{ matrix.os }}" = "windows-latest" ] && exit 1 || java -version'
+        run: java -version

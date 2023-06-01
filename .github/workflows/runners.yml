@@ -1,10 +1,8 @@
 name: Runner
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
+on:
+  workflow_dispatch
+  
 jobs:
   Run-npm-on-Ubuntu:
     name: Run npm on Ubuntu

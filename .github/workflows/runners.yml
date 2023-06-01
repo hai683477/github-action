@@ -1,4 +1,4 @@
-name: Github Action Runner
+name: Runner
 on:
   push:
     branches: [ main ]

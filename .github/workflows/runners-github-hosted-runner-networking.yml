@@ -3,7 +3,6 @@ on:
   workflow_dispatch
 
 jobs:
-  
   access-internal:
     runs-on: ubuntu-latest
     steps:
@@ -12,5 +11,5 @@ jobs:
 
       - name: Access internal sites
         run: |
-          ping tfe.lnrisk.io
+          ping -c 4 tfe.lnrisk.io
   

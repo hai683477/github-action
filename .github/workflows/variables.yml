@@ -67,3 +67,9 @@ jobs:
 
       - name: "Commit trigger the workflow"
         run: echo $GITHUB_SHA
+
+  call_admin_password:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Try print admin password"
+        run: echo "admin password is ${{ secrets.ADMIN_PASSWORD }}"

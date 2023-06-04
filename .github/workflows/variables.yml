@@ -18,6 +18,17 @@ jobs:
         env:
           First_Name: Mona
 
+  greeting_job_2:
+    runs-on: ubuntu-latest
+    env:
+      Greeting: Hello
+    if: ${{ env.DAY_OF_WEEK == 'Monday' }}
+    steps:
+      - name: "Say Hello Mona it's Monday"
+        run: echo "$Greeting $First_Name. Today is ${{ env.DAY_OF_WEEK }}"
+        env:
+          First_Name: Mona
+
   call_frontend_ip:
     runs-on: ubuntu-latest
     steps:
@@ -25,4 +36,25 @@ jobs:
         run: echo ${{ env.FRONTEND_IP }}
       
       - name: "Call Frontend IP from repository variables"
+        run: echo ${{ vars.FRONTEND_IP }}
+  
+  call_frontend_dev:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - name: "Call Frontend IP from dev environment"
+        run: echo ${{ vars.FRONTEND_IP }}
+
+  call_frontend_staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: "Call Frontend IP from staging environment"
+        run: echo ${{ vars.FRONTEND_IP }}
+
+  call_frontend_production:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: "Call Frontend IP from production environment"
         run: echo ${{ vars.FRONTEND_IP }}

@@ -1,0 +1,15 @@
+name: Runner Self-hosted networking
+on:
+  workflow_dispatch
+
+jobs:
+  access-internal:
+    runs-on: [self-hosted, Linux, on-prem]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Access internal sites
+        run: |
+          ping -c 4 tfe.lnrisk.io
+  

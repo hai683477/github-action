@@ -1,0 +1,16 @@
+name: Runner Github-hosted networking
+on:
+  workflow_dispatch
+
+jobs:
+  
+  access-internal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Access internal sites
+        run: |
+          ping tfe.lnrisk.io
+  

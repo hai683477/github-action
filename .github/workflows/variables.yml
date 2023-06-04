@@ -63,4 +63,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Print runner os"
-        run: echo ${{ vars.RUNNER_OS }}
+        run: echo $RUNNER_OS

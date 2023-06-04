@@ -58,3 +58,9 @@ jobs:
     steps:
       - name: "Call Frontend IP from production environment"
         run: echo ${{ vars.FRONTEND_IP }}
+
+  default_github_variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print runner os"
+        run: echo ${{ vars.RUNNER_OS }}

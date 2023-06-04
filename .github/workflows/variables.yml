@@ -59,8 +59,11 @@ jobs:
       - name: "Call Frontend IP from production environment"
         run: echo ${{ vars.FRONTEND_IP }}
 
-  default_github_variables:
+  default_github_variables_2:
     runs-on: ubuntu-latest
     steps:
       - name: "Print runner os"
         run: echo $RUNNER_OS
+
+      - name: "Commit trigger the workflow"
+        run: echo $GITHUB_SHA

@@ -11,5 +11,5 @@ jobs:
 
       - name: Access internal sites
         run: |
-          ping -c 4 tfe.lnrisk.io
+          ping -c 4 gitlab.ins.risk.regn.net
   

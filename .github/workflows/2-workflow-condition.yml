@@ -1,4 +1,4 @@
-name: Restaurant Process workflow
+name: 2.Restaurant Process workflow
 
 on:
   workflow_dispatch:

@@ -2,11 +2,7 @@ name: Outputs
 
 on:
   workflow_dispatch
-  
-env: 
-  ACTIONS_RUNNER_DEBUG: true
-  ACTIONS_STEP_DEBUG: true 
-  
+
 jobs:
   job1:
     runs-on: ubuntu-latest

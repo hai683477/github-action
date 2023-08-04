@@ -1,0 +1,21 @@
+# This is a basic workflow to help you get started with Actions
+
+name: 01.Hello World workflow
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  print-to-console:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print hello world to console
+        run: |
+          echo Hello World
+    
+    
+
+  

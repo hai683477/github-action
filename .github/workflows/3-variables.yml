@@ -1,0 +1,75 @@
+name: 03.Variables
+
+on:
+  workflow_dispatch
+
+env:
+  DAY_OF_WEEK: Monday
+  FRONTEND_IP: "0.0.0.0"
+
+jobs:
+  greeting_job:
+    runs-on: ubuntu-latest
+    env:
+      Greeting: Hello
+    steps:
+      - name: "Say Hello Mona it's Monday"
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        env:
+          First_Name: Mona
+
+  greeting_job_2:
+    runs-on: ubuntu-latest
+    env:
+      Greeting: Hello
+    steps:
+      - name: "Say Hello Mona it's Monday"
+        if: ${{ env.DAY_OF_WEEK == 'Monday' }}
+        run: echo "$Greeting $First_Name. Today is ${{ env.DAY_OF_WEEK }}"
+        env:
+          First_Name: Mona
+
+  call_frontend_ip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Call Frontend IP from local workflow"
+        run: echo ${{ env.FRONTEND_IP }}
+      
+      - name: "Call Frontend IP from repository variables"
+        run: echo ${{ vars.FRONTEND_IP }}
+  
+  call_frontend_dev:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - name: "Call Frontend IP from dev environment"
+        run: echo ${{ vars.FRONTEND_IP }}
+
+  call_frontend_staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: "Call Frontend IP from staging environment"
+        run: echo ${{ vars.FRONTEND_IP }}
+
+  call_frontend_production:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: "Call Frontend IP from production environment"
+        run: echo ${{ vars.FRONTEND_IP }}
+
+  default_github_variables_2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print runner os"
+        run: echo $RUNNER_OS
+
+      - name: "Commit trigger the workflow"
+        run: echo $GITHUB_SHA
+
+  call_admin_password:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Try print admin password"
+        run: echo "admin password is ${{ secrets.ADMIN_PASSWORD }}"

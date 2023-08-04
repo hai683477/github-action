@@ -1,0 +1,59 @@
+name: 09.Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      first-number:
+        description: First number
+        type: number
+        required: true
+      second-number:
+        description: Second number
+        type: number
+        required: true
+
+jobs:
+  composite-action:
+    name: Composite Action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Calculate Sum
+        id: calculate-sum
+        uses: ./.github/actions/composite
+        with:
+          first-number: ${{ inputs.first-number }}
+          second-number: ${{ inputs.second-number }}
+      - name: Print sum
+        run: 'echo "Sum: ${{ steps.calculate-sum.outputs.sum }}"'
+
+  docker-action:
+    name: Docker Action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Calculate Sum
+        id: calculate-sum
+        uses: ./.github/actions/docker
+        with:
+          first-number: ${{ inputs.first-number }}
+          second-number: ${{ inputs.second-number }}
+      - name: Print sum
+        run: 'echo "Sum: ${{ steps.calculate-sum.outputs.sum }}"'
+
+  javascript-action:
+    name: JavaScript Action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Calculate Sum
+        id: calculate-sum
+        uses: ./.github/actions/javascript
+        with:
+          first-number: ${{ inputs.first-number }}
+          second-number: ${{ inputs.second-number }}
+      - name: Print sum
+        run: 'echo "Sum: ${{ steps.calculate-sum.outputs.sum }}"'

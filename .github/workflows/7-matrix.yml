@@ -1,0 +1,107 @@
+name: 07.Matrix Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      job:
+        type: choice
+        options:
+          - 1D_Matrix
+          - 2D_Matrix
+          - Fail_Fast_Matrix
+          - Non_Fail_Fast_Matrix
+          - Max_Parallel_Matrix
+
+jobs:
+  one-dimension-matrix:
+    name: Java ${{ matrix.version }}
+    if: ${{ inputs.job == '1D_Matrix' }}
+    runs-on: [ ubuntu-latest ]
+    strategy:
+      matrix:
+        version: [ 8, 11, 17 ]
+    steps:
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: ${{ matrix.version }}
+      - name: Check Java version
+        run: java -version
+
+  two-dimension-matrix:
+    name: ${{ matrix.os }} - Java ${{ matrix.version }}
+    if: ${{ inputs.job == '2D_Matrix' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        version: [ 8, 11, 17 ]
+    steps:
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: ${{ matrix.version }}
+      - name: Check Java version
+        run: java -version
+
+  fail-fast-matrix:
+    name: ${{ matrix.os }} - Java ${{ matrix.version }}
+    if: ${{ inputs.job == 'Fail_Fast_Matrix' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        version: [ 8, 11, 17 ]
+    steps:
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: ${{ matrix.version }}
+      - name: Fail job
+        if: ${{ matrix.version == 11 }}
+        run: exit 1
+      - name: Check Java version
+        run: java -version
+
+  non-fail-fast-matrix:
+    name: ${{ matrix.os }} - Java ${{ matrix.version }}
+    if: ${{ inputs.job == 'Non_Fail_Fast_Matrix' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        version: [ 8, 11, 17 ]
+    steps:
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: ${{ matrix.version }}
+      - name: Fail job
+        if: ${{ matrix.version == 11 }}
+        run: exit 1
+      - name: Check Java version
+        run: java -version
+
+  max-parallel-matrix:
+    name: ${{ matrix.os }} - Java ${{ matrix.version }}
+    if: ${{ inputs.job == 'Max_Parallel_Matrix' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 3
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        version: [ 8, 11, 17 ]
+    steps:
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: ${{ matrix.version }}
+      - name: Check Java version
+        run: java -version

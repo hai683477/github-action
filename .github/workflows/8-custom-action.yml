@@ -1,4 +1,4 @@
-name: 08.Custom Action Workflow
+name: 08. Custom Action Workflow
 
 on:
   workflow_dispatch:

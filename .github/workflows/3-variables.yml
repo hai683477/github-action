@@ -1,7 +1,7 @@
-name: 03.Variables
+name: 03. Variables
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
 
 env:
   DAY_OF_WEEK: Monday
@@ -34,10 +34,10 @@ jobs:
     steps:
       - name: "Call Frontend IP from local workflow"
         run: echo ${{ env.FRONTEND_IP }}
-      
+
       - name: "Call Frontend IP from repository variables"
         run: echo ${{ vars.FRONTEND_IP }}
-  
+
   call_frontend_dev:
     runs-on: ubuntu-latest
     environment: development

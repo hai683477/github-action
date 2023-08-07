@@ -1,4 +1,4 @@
-name: 07.Matrix Workflow
+name: 07. Matrix Workflow
 
 on:
   workflow_dispatch:

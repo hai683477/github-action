@@ -1,7 +1,7 @@
-name: 05.Outputs
+name: 05. Outputs
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   job1:

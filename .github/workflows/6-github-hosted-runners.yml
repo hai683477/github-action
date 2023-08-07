@@ -1,9 +1,9 @@
-name: 06.Runner Github-hosted
+name: 06. Github-hosted Runners
+
 on:
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
-  
   ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -13,10 +13,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install jq
-
       - name: Administrative privileges
         run: sudo apt install
-  
+
   macos:
     runs-on: macos-latest
     steps:
@@ -30,7 +29,7 @@ jobs:
         run: |
           brew update
           brew install --cask microsoft-edge
-  
+
   windows:
     runs-on: windows-latest
     steps:

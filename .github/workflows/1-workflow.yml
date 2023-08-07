@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: 01.Hello World workflow
+name: 01. Hello World Workflow
 
 on:
   pull_request:
@@ -15,7 +15,3 @@ jobs:
       - name: Print hello world to console
         run: |
           echo Hello World
-    
-    
-
-  

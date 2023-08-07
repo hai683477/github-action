@@ -1,4 +1,4 @@
-name: 10.Reusable Workflow
+name: 10. Reusable Workflow
 
 on: workflow_dispatch
 

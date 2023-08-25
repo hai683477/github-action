@@ -38,7 +38,7 @@ jobs:
         run: echo "environment=${{ inputs.environment }}" >> "$GITHUB_OUTPUT"
   job2:
     runs-on: ubuntu-latest
-    need2:
+    needs: job1
     steps:
       - run: |
           echo "${{needs.job1.outputs.logLevel}} ${{needs.job1.outputs.tags}} ${{needs.job1.outputs.environment}}"

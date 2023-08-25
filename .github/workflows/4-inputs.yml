@@ -1,4 +1,4 @@
-name: 04. Inputs
+name: 04. Inputs & Outputs
 
 on:
   workflow_dispatch:
@@ -22,14 +22,23 @@ on:
         required: true
 
 jobs:
-  log-the-inputs:
+  job1:
     runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      logLevel: ${{ steps.step1.outputs.logLevel }}
+      tags: ${{ steps.step2.outputs.tags }}
+      environment: ${{ steps.step3.outputs.environment }}
+    steps:
+      - id: step1
+        run: echo "logLevel=${{ inputs.logLevel }}" >> "$GITHUB_OUTPUT"
+      - id: step2
+        run: echo "tags=${{ inputs.tags }}" >> "$GITHUB_OUTPUT"
+      - id: step3
+        run: echo "environment=${{ inputs.environment }}" >> "$GITHUB_OUTPUT"
+  job2:
+    runs-on: ubuntu-latest
+    need2:
     steps:
       - run: |
-          echo "Log level: $LEVEL"
-          echo "Tags: $TAGS"
-          echo "Environment: $ENVIRONMENT"
-        env:
-          LEVEL: ${{ inputs.logLevel }}
-          TAGS: ${{ inputs.tags }}
-          ENVIRONMENT: ${{ inputs.environment }}
+          echo "${{needs.job1.outputs.logLevel}} ${{needs.job1.outputs.tags}} ${{needs.job1.outputs.environment}}"
